@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <title>Gestão de Clientes</title>
+  </head>
+  <body>
+    <form class="form-signin shadow" autocomplete="off" method="POST">
+      {% csrf_token %}
+      <div class="text-center">
+        <h3>Crie sua conta </h3>
+      </div>
+      <div class="form-group">
+        <label for="id_username">Usuário: </label>
+        <input type="text" class="form-control"name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required id="id_username" placeholder="Máximo 150 caracteres">
+        {% if form_novo_usuario.username.errors %}
+          <div id="alert" class="alert alert-danger" role="alert">
+            {{ form_novo_usuario.username.errors}}
+          </div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="id_password1">Senha:</label>
+        <input type="password" class="form-control" name="password1" autocomplete="new-password" required id="id_password1">
+      </div>
+      <div class="form-group">
+        <label for="id_password2">Confirmação de senha:</label>
+        <input type="password" class="form-control"name="password2" autocomplete="new-password" required id="id_password2">
+        {% if form_novo_usuario.password1.errors or form_novo_usuario.password2.errors  %}
+          <div id="alert" class="alert alert-danger mt-2" role="alert">
+            {{ form_novo_usuario.password1.errors}}
+            {{ form_novo_usuario.password2.errors}}
+          </div>
+        {% endif %}
+        <small class="form-text text-muted text-center">
+          Sua senha deve ter entre 8 e 20 caracteres, conter letras e números e não deve conter espaços ou caracteres especiais.
+        </small>
+      </div>
+      <button class="btn btn-lg btn-dark btn-block mt-2" type="submit">Cadastrar</button>
+    </form>
+  </body>
+</html>

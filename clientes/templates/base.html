@@ -28,7 +28,7 @@
         </ul>
         {% if user.is_authenticated %}
         <span class="text-white ">  Olá {{ user.username }} </span> 
-        <a href="#" class="btn btn-outline-light btn-sm ml-2"> Sair </a> {% endif %}
+        <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm ml-2"> Sair </a> {% endif %}
       </div>
     </nav>
     <!-- Alertas -->

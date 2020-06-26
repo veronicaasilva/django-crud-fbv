@@ -1,0 +1,45 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+
+    <title>Gestão de Clientes</title>
+  </head>
+  <body class="text-center">
+    <form class="form-signin shadow" autocomplete="off" method="POST">
+      {% if messages %}
+        {% for m in messages %}
+          <div id="alert" class="alert alert-secondary" role="alert">
+            {{ m }}
+          </div>
+        {% endfor %}
+      {% endif %}  
+      {% csrf_token %}
+      <div class="text-center mb-4">
+          <i class="fas fa-address-book fa-5x"></i>
+      </div>
+      <p class="text-center mb-3 mt-3">  Faça login para iniciar sua sessão </p>
+
+      <label for="username" class="sr-only">Usuário</label>
+      <input type="text" name="username" class="form-control mb-2" placeholder="Usuário">
+
+      <label for="password" class="sr-only">Senha</label>
+      <input type="password" name="password" class="form-control" placeholder="Senha">
+
+      <button class="btn btn-lg btn-dark btn-block mt-2" type="submit">Entrar</button>
+      
+      <div class="text-center mt-2">
+          <a href="{% url 'novo_usuario' %}" class="text-dark font-weight-bold" style="font-size:small;"> Criar uma conta </a>
+      </div>
+    </form>
+
+
+  </body>
+</html>
