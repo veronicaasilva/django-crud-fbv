@@ -28,7 +28,7 @@
 					<div class="modal-body">Tem certeza de que deseja excluir <span class="font-weight-bold">{{ cliente.nomecompleto }}?</span><p>Esta operação é irreversível</p></div>
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
-						<a href="#" class="btn btn-danger"> <i class="far fa-trash-alt"></i> Excluir </a>
+						<a href="{% url 'excluir_cliente' cliente.id %}" class="btn btn-danger"> <i class="far fa-trash-alt"></i> Excluir </a>
 					</div>
 			</div>
 		</div>

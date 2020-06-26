@@ -19,14 +19,6 @@ def listar_clientes(request):
     return render(request, 'listar_clientes.html', context)
 
 
-def clonar_cliente(request, id):
-    cliente = get_object_or_404(Cliente, pk=id)
-    cliente.pk = None
-    cliente.save()
-    messages.success(request,  'Cliente clonado com sucesso!') 
-    return redirect('listar_clientes')
-
-
 def cadastrar_cliente(request): 
     form =  ClienteForm(request.POST or None, request.FILES or None)
     if str(request.method) == 'POST':
@@ -41,6 +33,7 @@ def cadastrar_cliente(request):
     }
     return render(request,'cadastrar_cliente.html',context)
 
+
 def atualizar_cliente(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
     form = ClienteForm(request.POST or None, request.FILES or None, instance=cliente)
@@ -48,8 +41,7 @@ def atualizar_cliente(request, id):
         if form.is_valid():
             form.save()
             messages.success(request,  'Cliente atualizado com sucesso!')
-            #return render(request, 'visualizarcadastro.html', {'cliente': cliente})
-            return redirect('listar_clientes')
+            return render(request, 'visualizar_cliente.html', {'cliente': cliente})
         else:
             messages.error(request,  'Erro ao alterar o contato')
     context = {
@@ -57,3 +49,27 @@ def atualizar_cliente(request, id):
         'cliente' : cliente
     }
     return render(request,'atualizar_cliente.html',context)
+
+
+def visualizar_cliente(request, id):
+    cliente = get_object_or_404(Cliente, pk=id)
+    context = {
+        'cliente' : cliente
+    }
+    return render(request,'visualizar_cliente.html',context)
+
+
+def excluir_cliente(request, id):
+    cliente = get_object_or_404(Cliente, pk=id)
+    cliente.delete()
+    messages.success(request, 'Cliente excluído com sucesso')
+
+    return redirect('listar_clientes')
+
+
+def clonar_cliente(request, id):
+    cliente = get_object_or_404(Cliente, pk=id)
+    cliente.pk = None
+    cliente.save()
+    messages.success(request,  'Cliente clonado com sucesso!') 
+    return redirect('listar_clientes')

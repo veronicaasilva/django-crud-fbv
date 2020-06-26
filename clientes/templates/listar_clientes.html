@@ -21,7 +21,7 @@
 					<td class="d-none d-md-table-cell">{{ cliente.email }} </td>
 					<td class="d-none d-lg-table-cell">{{ cliente.cidade }} </td>
 					<td class="d-none d-lg-table-cell">
-						<a href="#" class="btn btn-outline-dark" > <i class="far fa-eye"></i> Visualizar </a>
+						<a href="{% url 'visualizar_cliente' cliente.id %}" class="btn btn-outline-dark" > <i class="far fa-eye"></i> Visualizar </a>
 						<a href="{% url 'atualizar_cliente' cliente.id %}" class="btn btn-outline-dark"> <i class="fas fa-user-edit"></i> Atualizar </a>
 						<div class="btn-group dropright">
 							<button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown"> Mais </button>          
@@ -37,11 +37,11 @@
 						<div class="btn-group dropright">
 							<button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown"> Ações </button>          
 							<div class="dropdown-menu">
-								<a href="#"class="dropdown-item"><i class="far fa-eye"></i> Visualizar </a>
+								<a href="{% url 'visualizar_cliente' cliente.id %}"class="dropdown-item"><i class="far fa-eye"></i> Visualizar </a>
 								<a href="{% url 'atualizar_cliente' cliente.id %}" class="dropdown-item"> <i class="fas fa-user-edit"></i> Atualizar </a>
 								<a href="{% url 'clonar_cliente' cliente.id %}"class="dropdown-item"><i class="far fa-copy"></i> Clonar </a>
-								<a href="#" class="dropdown-item" target="_blank"><i class="fas fa-print"></i> Imprimir </a>
 								<a href="#" class="dropdown-item " data-toggle="modal" data-target="#delete-modal" ><i class="far fa-trash-alt"></i> Excluir </a>
+								<a href="#" class="dropdown-item" target="_blank"><i class="fas fa-print"></i> Imprimir </a>
 							</div>
 						</div>          
 					</td>
@@ -59,7 +59,7 @@
 								</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
-										<a href="#" class="btn btn-danger"> <i class="far fa-trash-alt"></i> Excluir </a>
+										<a href="{% url 'excluir_cliente' cliente.id %}" class="btn btn-danger"> <i class="far fa-trash-alt"></i> Excluir </a>
 									</div>
 							</div>
 						</div>

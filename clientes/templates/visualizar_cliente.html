@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Cadastro de {{ cliente.nomecompleto }} {% endblock title %}
+{% block main %}
+	<div class="container">
+		<div class="my-3 p-3 bg-white rounded shadow-sm">
+			<p class="text-center h5 border-bottom border-gray pb-1"> Cadastro Completo </p>
+			<div class="row">
+				<div class="col-md-8">                    
+					<p> <strong class="text-gray-dark">Nome Completo: </strong>  {{ cliente.nomecompleto }} </p>
+					<p> <strong class="text-gray-dark">Data de Nascimento: </strong>  {{ cliente.nascimento }} </p>
+					<p> <strong class="text-gray-dark">Sexo: </strong>  {{ cliente.sexo }} </p>
+					<p> <strong class="text-gray-dark">Whatsapp: </strong>  {{ cliente.whatsapp}} </p>
+					<p> <strong class="text-gray-dark">Endereço: </strong>  {{ cliente.endereco }} </p>
+					<p> <strong class="text-gray-dark">Cidade: </strong>  {{ cliente.cidade }} </p>
+					<p> <strong class="text-gray-dark">Email:  </strong>  {{ cliente.email }} </p>
+				</div>
+			</div>
+			<h5 class="mt-3 mb-3 border-top border-gray pt-2">Ações</h5>
+			<a href="http://api.whatsapp.com/send?1=pt_BR&phone=55{{ cliente.whatsapp }}" class="btn btn-outline-dark" target="_blank"><i class="fab fa-whatsapp"></i> Chamar no Whatsapp </a>
+			<a href="mailto:{{cliente.email}}" class="btn btn-outline-dark"><i class="far fa-envelope-open"></i> Enviar Email </a>
+			<a href="#"  target="_blank" class="btn btn-outline-dark"><i class="fas fa-print"></i> Imprimir </a>
+			<a href="{% url 'listar_clientes' %}" class="btn btn-outline-dark"> <i class="fas fa-arrow-left"></i> Voltar </a>
+			
+		</div>
+	</div>
+{% endblock main %}
+    
