@@ -5,15 +5,12 @@ from .models import Cliente
 from .forms import ClienteForm
 
 def listar_clientes(request):
-    '''
     busca = request.GET.get('busca')
     if busca:
         clientes_list = Cliente.objects.filter(nomecompleto__icontains=busca)
     else:
         clientes_list = Cliente.objects.all()   
-'''
-    clientes_list = Cliente.objects.all() 
-    paginator = Paginator(clientes_list, 2)
+    paginator = Paginator(clientes_list, 10)
     page = request.GET.get('page')
     clientes = paginator.get_page(page)
     context = {

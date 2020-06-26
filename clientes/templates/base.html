@@ -5,22 +5,18 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Estilos personalizados -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet">
-
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
   <!-- Font Awesone -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    
+  <!-- Estilos personalizados -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
   <title> {% block title %}{% endblock %}</title> 
 </head>
   <body>
     <!-- Nav bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{% url 'listar_clientes' %}"> <i class="fas fa-home"></i> Meus Clientes </a>
+      <a class="navbar-brand"><i class="fas fa-home"></i> Meus Clientes </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -35,7 +31,6 @@
         <a href="#" class="btn btn-outline-light btn-sm ml-2"> Sair </a> {% endif %}
       </div>
     </nav>
-
     <!-- Alertas -->
     {% if messages %}
 			{% for m in messages %}
@@ -47,23 +42,16 @@
 				</div>
 			{% endfor %}
     {% endif %}  
-
-
 		<!-- conteudo -->
 		<main class="mx-3 my-3">
 			{% block main %}
-		
 			{% endblock %}
 		</main>
-
-
-    <footer class="footer mt-auto py-3">
-      <div class="container mb-3">
-        <ul class="social_footer_ul">
-          <li><a href="#"><i class="fas fa-address-card"></i></a></li>
-          <li><a href="https://github.com/veronicaasilva" target="_blank"><i class="fab fa-github"></i></a></li>
-          <li><a href="https://www.linkedin.com/in/veronicaasilva/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-        </ul>
+    <footer class="footer">
+      <div class="my-3">
+        <p class="text-muted"> Desenvolvimento com Django e Bootstrap4 </p>
+        <a href="https://github.com/veronicaasilva" class="btn btn-outline-secondary" target="_blank"><i class="fab fa-github"></i></a></li>
+        <a href="https://www.linkedin.com/in/veronicaasilva/" class="btn btn-outline-secondary"  target="_blank"><i class="fab fa-linkedin"></i></a></li>
       </div>
     </footer>
 

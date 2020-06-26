@@ -1,16 +1,30 @@
 {% extends 'base.html' %}
 {% block title %}  Página Inicial {% endblock %}
 {% block main %}
+  <!-- Busca clientes -->  	
+	<div class="container" id="areabusca">
+    <div class="row justify-content-center mb-4 mt-4">
+      <div class="col-10">
+        <form> 
+          <div class="input-group">
+            <input type="text" class="form-control form-control-lg" name="busca" id="busca" type="text" placeholder="Buscar cliente..." value="{{ request.GET.busca }}">
+            <div class="input-group-append">
+              <button class="btn btn-dark" type="submit"><i class="fas fa-search"></i>  Buscar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 	<!-- Listagem clientes -->  	
-	<div class="table-responsive-md" name='divtable'>
+	<div class="table-responsive-md">
 		<table class="table table-hover table-bordered">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Nome</th>
-					<th scope="col" class="d-none d-md-table-cell">Email</th>
-					<th scope="col" class="d-none d-lg-table-cell">Cidade</th>
-					<th scope="col" class="d-none d-lg-table-cell">Ações</th>
-					<th scope="col" class="d-lg-none">Ações</th>
+					<th scope="col">Email</th>
+					<th scope="col">Cidade</th>
+					<th scope="col">Ações</th>
 				</tr>
 			</thead>
 			<tbody>      
@@ -18,16 +32,15 @@
 				<!-- Linhas -->  
 				<tr>
 					<td>{{ cliente.nomecompleto }} </th>
-					<td class="d-none d-md-table-cell">{{ cliente.email }} </td>
-					<td class="d-none d-lg-table-cell">{{ cliente.cidade }} </td>
-					<td class="d-none d-lg-table-cell">
+					<td>{{ cliente.email }} </td>
+					<td>{{ cliente.cidade }} </td>
+					<td>
 						<a href="{% url 'visualizar_cliente' cliente.id %}" class="btn btn-outline-dark" > <i class="far fa-eye"></i> Visualizar </a>
 						<a href="{% url 'atualizar_cliente' cliente.id %}" class="btn btn-outline-dark"> <i class="fas fa-user-edit"></i> Atualizar </a>
 						<div class="btn-group dropright">
 							<button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown"> Mais </button>          
 							<div class="dropdown-menu">
 								<a href="{% url 'clonar_cliente' cliente.id %}" class="dropdown-item"><i class="far fa-copy"></i> Clonar </a>
-								<a href="#"  target="_blank" class="dropdown-item"><i class="fas fa-print"></i> Imprimir </a>
 								<a href="#" class="dropdown-item " data-toggle="modal" data-target="#delete-modal" ><i class="far fa-trash-alt"></i> Excluir </a>
 							</div>
 						</div>          
@@ -42,7 +55,8 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
 								</div>
 								<div class="modal-body">
-									<span class="font-weight-bold"> 	Tem certeza de que deseja excluir este cliente? </span><p>A operação é irreversível.</p>
+									<span class="font-weight-bold">Tem certeza de que deseja excluir este cliente?</span>
+									<p>Esta operação é irreversível.</p>
 								</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
@@ -57,7 +71,6 @@
 			</tbody>
 		</table>
 	</div>
-
 	<!-- Paginação -->   
 	<nav>
 		<ul class="pagination justify-content-center">
