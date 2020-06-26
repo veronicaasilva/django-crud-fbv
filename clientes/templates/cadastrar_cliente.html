@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block title %} Novo Cadastro {% endblock title %}
+{% block main %}
+	<div class=" container my-3 p-3 bg-white rounded shadow-sm">
+		<p class="text-center h3 border-bottom border-gray pb-1"> Novo Cadastro </p>
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{% bootstrap_form form %}
+			<button type="submit" class="btn btn-dark"> <i class="fas fa-check"></i> Cadastrar</button>
+			<a href="javascript:history.back()" class="btn btn-outline-dark"> <i class="fas fa-arrow-left"></i> Voltar </a>
+		</form>
+	</div>
+{% endblock main %}
