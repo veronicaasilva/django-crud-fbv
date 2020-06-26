@@ -32,19 +32,6 @@
 							</div>
 						</div>          
 					</td>
-					<!--  Menu dispositivos >=992px -->
-					<td class="d-lg-none">
-						<div class="btn-group dropright">
-							<button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown"> Ações </button>          
-							<div class="dropdown-menu">
-								<a href="{% url 'visualizar_cliente' cliente.id %}"class="dropdown-item"><i class="far fa-eye"></i> Visualizar </a>
-								<a href="{% url 'atualizar_cliente' cliente.id %}" class="dropdown-item"> <i class="fas fa-user-edit"></i> Atualizar </a>
-								<a href="{% url 'clonar_cliente' cliente.id %}"class="dropdown-item"><i class="far fa-copy"></i> Clonar </a>
-								<a href="#" class="dropdown-item " data-toggle="modal" data-target="#delete-modal" ><i class="far fa-trash-alt"></i> Excluir </a>
-								<a href="#" class="dropdown-item" target="_blank"><i class="fas fa-print"></i> Imprimir </a>
-							</div>
-						</div>          
-					</td>
 				<!-- /linhas -->  
 					<!-- /#Modal para Excluir -->   
 					<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
@@ -55,7 +42,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
 								</div>
 								<div class="modal-body">
-									Tem certeza de que deseja excluir <span class="font-weight-bold">{{ cliente.nomecompleto }}?</span><p>Esta operação é irreversível</p>
+									<span class="font-weight-bold"> 	Tem certeza de que deseja excluir este cliente? </span><p>A operação é irreversível.</p>
 								</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>

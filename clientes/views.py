@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-
+from django.core.paginator import Paginator
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cliente
 from .forms import ClienteForm
 
@@ -12,7 +12,10 @@ def listar_clientes(request):
     else:
         clientes_list = Cliente.objects.all()   
 '''
-    clientes = Cliente.objects.all()  
+    clientes_list = Cliente.objects.all() 
+    paginator = Paginator(clientes_list, 2)
+    page = request.GET.get('page')
+    clientes = paginator.get_page(page)
     context = {
         'clientes' : clientes
 	}
