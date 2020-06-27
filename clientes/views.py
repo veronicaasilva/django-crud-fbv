@@ -1,9 +1,11 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cliente
 from .forms import ClienteForm
 
+@login_required
 def listar_clientes(request):
     busca = request.GET.get('busca')
     if busca:
@@ -18,7 +20,7 @@ def listar_clientes(request):
 	}
     return render(request, 'listar_clientes.html', context)
 
-
+@login_required
 def cadastrar_cliente(request): 
     form =  ClienteForm(request.POST or None, request.FILES or None)
     if str(request.method) == 'POST':
@@ -33,7 +35,7 @@ def cadastrar_cliente(request):
     }
     return render(request,'cadastrar_cliente.html',context)
 
-
+@login_required
 def atualizar_cliente(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
     form = ClienteForm(request.POST or None, request.FILES or None, instance=cliente)
@@ -50,7 +52,7 @@ def atualizar_cliente(request, id):
     }
     return render(request,'atualizar_cliente.html',context)
 
-
+@login_required
 def visualizar_cliente(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
     context = {
@@ -58,7 +60,7 @@ def visualizar_cliente(request, id):
     }
     return render(request,'visualizar_cliente.html',context)
 
-
+@login_required
 def excluir_cliente(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
     cliente.delete()
@@ -66,7 +68,7 @@ def excluir_cliente(request, id):
 
     return redirect('listar_clientes')
 
-
+@login_required
 def clonar_cliente(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
     cliente.pk = None
