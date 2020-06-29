@@ -9,9 +9,9 @@ from .forms import ClienteForm
 def listar_clientes(request):
     busca = request.GET.get('busca')
     if busca:
-        clientes_list = Cliente.objects.filter(nomecompleto__icontains=busca)
+        clientes_list = Cliente.objects.filter(nomecompleto__icontains=busca).order_by('nomecompleto')
     else:
-        clientes_list = Cliente.objects.all()   
+        clientes_list = Cliente.objects.all().order_by('nomecompleto')   
     paginator = Paginator(clientes_list, 10)
     page = request.GET.get('page')
     clientes = paginator.get_page(page)
@@ -20,25 +20,25 @@ def listar_clientes(request):
 	}
     return render(request, 'listar_clientes.html', context)
 
+
 @login_required
 def cadastrar_cliente(request): 
-    form =  ClienteForm(request.POST or None, request.FILES or None)
+    form =  ClienteForm(request.POST or None)
     if str(request.method) == 'POST':
         if form.is_valid():
-            form.save()
+            cliente = form.save()
             messages.success(request,  'Cliente cadastrado com sucesso!')
-            return redirect('listar_clientes')
+            return redirect('visualizar_cliente', cliente.id)
+            #return render(request,'visualizar_cliente.html',{'cliente' : form.cleaned_data})
         else:
             messages.error(request,  'Erro ao cadastrar o cliente. Contate o administrador')
-    context = {
-        'form': form
-    }
-    return render(request,'cadastrar_cliente.html',context)
+    return render(request,'cadastrar_cliente.html',{'form': form})
+
 
 @login_required
 def atualizar_cliente(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
-    form = ClienteForm(request.POST or None, request.FILES or None, instance=cliente)
+    form = ClienteForm(request.POST or None, instance=cliente)
     if str(request.method) == 'POST':
         if form.is_valid():
             form.save()
@@ -52,6 +52,7 @@ def atualizar_cliente(request, id):
     }
     return render(request,'atualizar_cliente.html',context)
 
+
 @login_required
 def visualizar_cliente(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
@@ -60,6 +61,7 @@ def visualizar_cliente(request, id):
     }
     return render(request,'visualizar_cliente.html',context)
 
+
 @login_required
 def excluir_cliente(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
@@ -67,6 +69,7 @@ def excluir_cliente(request, id):
     messages.success(request, 'Cliente excluído com sucesso')
 
     return redirect('listar_clientes')
+
 
 @login_required
 def clonar_cliente(request, id):
