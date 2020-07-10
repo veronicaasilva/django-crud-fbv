@@ -1,6 +1,4 @@
-# READ.ME
-
-### Gestão de Clientes
+# Gestão de Clientes
 
 O Gestão de Clientes é uma aplicação que busca facilitar o controle dos dados pessoais e de contatos dos clientes.
 
